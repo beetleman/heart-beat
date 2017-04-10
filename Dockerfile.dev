@@ -14,7 +14,8 @@ RUN apt-get update &&\
     source $NVM_DIR/nvm.sh &&\
     nvm install $NODE_VERSION &&\
     nvm alias default $NODE_VERSION &&\
-    nvm use default;
+    nvm use default &&\
+    npm install supervisor -g;
 
 EXPOSE 3000
 EXPOSE 7000
