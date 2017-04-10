@@ -19,7 +19,9 @@
             ;; end FOR_CIDER
             [lein-figwheel "0.5.9"]
             [lein-cljsbuild "1.1.4"]]
-  :npm {:dependencies [[source-map-support "0.4.6"]]
+  :npm {:dependencies [[source-map-support "0.4.6"]
+                       [web3 "0.18.4"]
+                       [truffle-contract "2.0.0"]]
         :write-package-json true}
   :source-paths ["src" "target/classes"]
   :clean-targets ["target"]
