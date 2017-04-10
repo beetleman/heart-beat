@@ -1,0 +1,38 @@
+version: "2"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    volumes:
+      - .:/app
+    ports:
+      - "7000:7000"
+      - "3000:3000"
+    links:
+      - testrpc
+      - truffle
+    environment:
+      - RPC_HOST=testrpc
+      - HOST=0.0.0.0
+    stdin_open: true
+    command: bash ./script/run-dev.sh
+
+  testrpc:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.testrpc
+    ports:
+      - "8545:8545"
+
+  truffle:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.truffle
+    volumes:
+      - .:/app
+    links:
+      - testrpc
+    environment:
+      - RPC_HOST=testrpc
+    command: truffle watch
