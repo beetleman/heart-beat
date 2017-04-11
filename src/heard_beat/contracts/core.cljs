@@ -2,6 +2,7 @@
   (:require [cljs.nodejs :as nodejs]
             [mount.core :refer [defstate]]
             [cljs.core.async :refer [put! <! chan]]
+            [heard-beat.helpers :refer [throw-err]]
             [heard-beat.config :refer [env]])
   (:require-macros
    [cljs.core.async.macros :refer [go]]))
@@ -18,11 +19,21 @@
            web3))
 
 
-(defn callback [c]
+(defn get-result-or-throw [v]
+  (-> v :error throw-err)
+  (:result v))
+
+(defn callback-chan
+  ([]
+   (callback-chan 1))
+  ([buffer]
+   (chan buffer (map get-result-or-throw))))
+
+(defn callback-fn [c]
   #(put! c {:error (js->clj %1) :result (js->clj %2)}))
 
 
 (defn getAccounts [web3]
-  (let [c (chan)]
-    (.. web3 -eth (getAccounts (callback c)))
+  (let [c (callback-chan)]
+    (.. web3 -eth (getAccounts (callback-fn c)))
     c))

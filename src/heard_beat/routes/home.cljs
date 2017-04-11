@@ -20,7 +20,6 @@
              [:h2 "Status:"]
              [:p "accounts: " (->> accounts
                                    <!
-                                   :result
                                    (clojure.string/join ", "))]
              [:p "connected: " connected?]]])
           (r/ok)
