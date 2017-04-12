@@ -23,9 +23,10 @@
             :result (js->clj %2)}))
 
 (defn promises->chan [p]
-  (let [chan (callback-chan)]
+  (let [c (callback-chan)]
     (-> p
         (.then #(put! c {:error nil
                          :result %}))
         (.catch #(put! c {:error (new js/Error %)
-                          :result nil))))
+                          :result nil})))
+    c))

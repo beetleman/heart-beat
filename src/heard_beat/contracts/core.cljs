@@ -1,10 +1,15 @@
 (ns heard-beat.contracts.core
   (:require [cljs.nodejs :as nodejs]
             [mount.core :refer [defstate]]
-            [heard-beat.helpers :refer [throw-err callback-chan callback-fn]]
+            [heard-beat.helpers :refer [throw-err
+                                        callback-chan
+                                        callback-fn
+                                        promises->chan]]
+            [taoensso.timbre :refer-macros [error]]
             [heard-beat.config :refer [env]]))
 
 (def Web3 (nodejs/require "web3"));
+(def truffle-contract (nodejs/require "truffle-contract"))
 
 (defstate web3
   :start (let [web3 (new Web3)
@@ -15,7 +20,22 @@
            (.setProvider web3 provider)
            web3))
 
-(defn getAccounts [web3]
-  (let [c (callback-chan)]
-    (.. web3 -eth (getAccounts (callback-fn c)))
-    c))
+(defn get-accounts
+  ([]
+   (get-accounts @web3))
+  ([web3]
+   (let [c (callback-chan)]
+     (.. web3 -eth (getAccounts (callback-fn c)))
+     c)))
+
+(defn get-contract
+  ([json]
+   (get-contract json @web3))
+  ([json web3]
+   (let [meta (truffle-contract json)]
+     (.setProvider meta (.-currentProvider web3))
+     meta)))
+
+(defn get-instance [contract]
+  (-> (.deployed contract)
+      promises->chan))
