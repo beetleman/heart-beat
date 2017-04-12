@@ -4,22 +4,16 @@ const MetaCoin = artifacts.require("./MetaCoin.sol");
 const HeartBeat = artifacts.require("./HeartBeat.sol");
 const Counter = artifacts.require("./Counter.sol");
 
-module.exports = function(deployer, network, accounts) {
+module.exports = async function(deployer, network, accounts) {
     deployer.deploy(ConvertLib);
     deployer.link(ConvertLib, MetaCoin);
     deployer.deploy(MetaCoin);
 
-    let heatBeat;
+    await deployer.deploy(HeartBeat);
+    await deployer.deploy(Counter);
 
-    deployer.deploy(HeartBeat)
-        .then(() => deployer.deploy(Counter))
-        .then(() => HeartBeat.deployed())
-        .then((instance) => {
-            heatBeat = instance;
-            return Counter.deployed();
-        })
-        .then((counter) => {
-            console.log("counter", counter.address);
-            return heatBeat.addSubscriber(counter.address, {from: accounts[0]});
-        });
+    const heatBeat = await HeartBeat.deployed();
+    const counter = await Counter.deployed();
+
+    heatBeat.addSubscriber(counter.address, {from: accounts[0]});
 };
