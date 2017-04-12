@@ -13,7 +13,7 @@
            (info "main loop runned ...")
            (reset! runned? true)
            (while @runned?
-             (<! (timeout (-> (get @env :delay 2000) int)))
+             (<! (timeout (-> (get @env :delay 5000) int)))
              (info "beat ..."))
            (info "main loop stoped"))
   :stop (do
