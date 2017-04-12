@@ -3,6 +3,7 @@
     [heard-beat.config :refer [env]]
     [heard-beat.middleware :refer [wrap-defaults]]
     [heard-beat.routes :refer [router]]
+    [heard-beat.beat :refer [main-loop]]
     [macchiato.server :as http]
     [macchiato.session.memory :as mem]
     [mount.core :as mount :refer [defstate]]
