@@ -1,4 +1,4 @@
-(ns heard-beat.helpers
+(ns heard-beat.helpers.core
   (:require
    [cljs.core.async :refer [put! chan]]))
 

@@ -1,10 +1,10 @@
 (ns heard-beat.truffle.core
   (:require [cljs.nodejs :as nodejs]
             [mount.core :refer [defstate]]
-            [heard-beat.helpers :refer [throw-err
-                                        callback-chan
-                                        callback-fn
-                                        promises->chan]]
+            [heard-beat.helpers.core :refer [throw-err
+                                             callback-chan
+                                             callback-fn
+                                             promises->chan]]
             [taoensso.timbre :refer-macros [error]]
             [heard-beat.config :refer [env]]))
 

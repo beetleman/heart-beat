@@ -3,11 +3,12 @@
    [cljs.core.async :refer [put! chan <!]]
    [hiccups.runtime]
    [heard-beat.truffle.core :refer [web3 get-accounts get-instance]]
-   [heard-beat.helpers :refer [promises->chan]]
+   [heard-beat.helpers.core :refer [promises->chan]]
    [heard-beat.contracts :as c]
    [macchiato.util.response :as r])
   (:require-macros
    [cljs.core.async.macros :refer [go]]
+   [heard-beat.helpers.macros :refer [?->]]
    [hiccups.core :refer [html]]))
 
 
