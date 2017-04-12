@@ -2,16 +2,13 @@
   (:require
    [cljs.core.async :refer [put! chan <!]]
    [hiccups.runtime]
-   [heard-beat.contracts.core :refer [web3 get-accounts get-instance]]
+   [heard-beat.truffle.core :refer [web3 get-accounts get-instance]]
    [heard-beat.helpers :refer [promises->chan]]
+   [heard-beat.contracts :as c]
    [macchiato.util.response :as r])
   (:require-macros
    [cljs.core.async.macros :refer [go]]
-   [heard-beat.contracts.macros :refer [defcontract]]
    [hiccups.core :refer [html]]))
-
-
-(defcontract coin "src/truffle/build/contracts/MetaCoin.json")
 
 
 (defn get-view [req res raise]
@@ -21,8 +18,8 @@
                     get-accounts
                     <!)
           account (first accounts)
-          meta (-> coin get-instance <!)
-          balance (-> (.deployed coin)
+          meta (-> c/coin get-instance <!)
+          balance (-> (.deployed c/coin)
                       (.then #((.. % -getBalance -call) account))
                       promises->chan
                       <!)

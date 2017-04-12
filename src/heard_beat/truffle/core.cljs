@@ -1,4 +1,4 @@
-(ns heard-beat.contracts.core
+(ns heard-beat.truffle.core
   (:require [cljs.nodejs :as nodejs]
             [mount.core :refer [defstate]]
             [heard-beat.helpers :refer [throw-err
