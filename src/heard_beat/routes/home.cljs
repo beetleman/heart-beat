@@ -10,9 +10,9 @@
 
 
 (defn get-view [req res raise]
-  (go
-    (let [accounts (getAccounts @web3)
+  (let [accounts (getAccounts @web3)
           connected? (.isConnected @web3)]
+    (go
       (-> (html
            [:html
             [:head [:link {:rel "stylesheet" :href "/css/site.css"}]]
