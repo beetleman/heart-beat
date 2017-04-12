@@ -1,6 +1,15 @@
 (ns heard-beat.helpers.macros)
 
-(defmacro ?-> [promise & body]
+(defn- chain [body]
+  (map (fn [f] `(.then ~f)) body))
+
+(defmacro chan-> [promise & body]
   `(-> ~promise
-       ~@(map (fn [f] `(.then ~f)) body)
+       ~@(chain body)
        heard-beat.helpers.core/promises->chan))
+
+(defmacro <!-> [promise & body]
+  `(-> ~promise
+       ~@(chain body)
+       heard-beat.helpers.core/promises->chan
+       cljs.core.async/<!))

@@ -8,7 +8,7 @@
    [macchiato.util.response :as r])
   (:require-macros
    [cljs.core.async.macros :refer [go]]
-   [heard-beat.helpers.macros :refer [?->]]
+   [heard-beat.helpers.macros :refer [chan-> <!->]]
    [hiccups.core :refer [html]]))
 
 
@@ -20,10 +20,8 @@
                     <!)
           account (first accounts)
           meta (-> c/coin get-instance <!)
-          balance (-> (.deployed c/coin)
-                      (.then #((.. % -getBalance -call) account))
-                      promises->chan
-                      <!)
+          balance (<!-> (.deployed c/coin)
+                        #((.. % -getBalance -call) account))
           connected? (.isConnected @web3)]
       (-> (html
            [:html
