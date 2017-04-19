@@ -1,4 +1,6 @@
-(ns heard-beat.truffle.macros)
+(ns heard-beat.truffle.macros
+  #?(:cljs (:require [heard-beat.truffle.core])))
+
 
 (defmacro defcontract [name p]
   (let [content (clojure.core/slurp p)]
