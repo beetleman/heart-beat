@@ -6,7 +6,8 @@
                                              callback-fn
                                              promises->chan]]
             [taoensso.timbre :refer-macros [error]]
-            [heard-beat.config :refer [env]]))
+            [heard-beat.config :refer [env]])
+  (:require-macros [heard-beat.truffle.core :refer [defcontract]]))
 
 (def Web3 (nodejs/require "web3"));
 (def truffle-contract (nodejs/require "truffle-contract"))

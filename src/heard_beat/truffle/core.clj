@@ -1,5 +1,4 @@
-(ns heard-beat.truffle.macros
-  #?(:cljs (:require [heard-beat.truffle.core])))
+(ns heard-beat.truffle.core)
 
 
 (defmacro defcontract [name p]
