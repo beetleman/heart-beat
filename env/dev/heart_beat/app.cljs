@@ -1,6 +1,6 @@
- (ns ^:figwheel-always heard-beat.app
+ (ns ^:figwheel-always heart-beat.app
   (:require
-    [heard-beat.core :as core]
+    [heart-beat.core :as core]
     [cljs.nodejs :as node]
     [mount.core :as mount]))
 

@@ -1,7 +1,7 @@
-(ns heard-beat.beat
+(ns heart-beat.beat
   (:require [mount.core :refer [defstate]]
             [taoensso.timbre :refer-macros [info]]
-            [heard-beat.config :refer [env]]
+            [heart-beat.config :refer [env]]
             [cljs.core.async :refer [<! timeout]])
   (:require-macros
    [cljs.core.async.macros :refer [go]]))

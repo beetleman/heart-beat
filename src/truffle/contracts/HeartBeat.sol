@@ -1,12 +1,12 @@
 pragma solidity ^0.4.8;
-import { IWithHeardBeat } from './IWithHeardBeat.sol';
+import { IWithHeartBeat } from './IWithHeartBeat.sol';
 
 
 contract HeartBeat {
-  IWithHeardBeat[] callbacks; // array of all subscribers
+  IWithHeartBeat[] callbacks; // array of all subscribers
 
   // Register subscriber
-  function addSubscriber(IWithHeardBeat a) {
+  function addSubscriber(IWithHeartBeat a) {
     callbacks.push(a);
   }
 

@@ -1,4 +1,4 @@
-(defproject heard-beat "0.1.0-SNAPSHOT"
+(defproject heart-beat "0.1.0-SNAPSHOT"
   :description "FIXME: write this!"
   :url "http://example.com/FIXME"
   :dependencies [[bidi "2.0.16"]
@@ -29,14 +29,14 @@
   :target-path "target"
   :profiles
   {:dev
-   {:npm {:package {:main "target/out/heard-beat.js"
-                    :scripts {:start "node target/out/heard-beat.js"}}}
+   {:npm {:package {:main "target/out/heart-beat.js"
+                    :scripts {:start "node target/out/heart-beat.js"}}}
     :cljsbuild
     {:builds {:dev
               {:source-paths ["env/dev" "src"]
                :figwheel     true
-               :compiler     {:main          heard-beat.app
-                              :output-to     "target/out/heard-beat.js"
+               :compiler     {:main          heart-beat.app
+                              :output-to     "target/out/heart-beat.js"
                               :output-dir    "target/out"
                               :target        :nodejs
                               :optimizations :none
@@ -63,22 +63,22 @@
     {:builds
      {:test
       {:source-paths ["env/test" "src" "test"]
-       :compiler     {:main heard-beat.app
-                      :output-to     "target/test/heard-beat.js"
+       :compiler     {:main heart-beat.app
+                      :output-to     "target/test/heart-beat.js"
                       :target        :nodejs
                       :optimizations :none
                       :pretty-print  true
                       :source-map    true}}}}
     :doo {:build "test"}}
    :release
-   {:npm {:package {:main "target/release/heard-beat.js"
-                    :scripts {:start "node target/release/heard-beat.js"}}}
+   {:npm {:package {:main "target/release/heart-beat.js"
+                    :scripts {:start "node target/release/heart-beat.js"}}}
     :cljsbuild
     {:builds
      {:release
       {:source-paths ["env/prod" "src"]
-       :compiler     {:main          heard-beat.app
-                      :output-to     "target/release/heard-beat.js"
+       :compiler     {:main          heart-beat.app
+                      :output-to     "target/release/heart-beat.js"
                       :target        :nodejs
                       :optimizations :simple
                       :pretty-print  false}}}}}}

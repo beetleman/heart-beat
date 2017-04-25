@@ -1,4 +1,4 @@
-(ns heard-beat.routes.not-found
+(ns heart-beat.routes.not-found
   (:require
    [hiccups.runtime]
    [macchiato.util.response :as r])

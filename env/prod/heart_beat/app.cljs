@@ -1,6 +1,6 @@
- (ns heard-beat.app
+ (ns heart-beat.app
   (:require
-    [heard-beat.core :as core]
+    [heart-beat.core :as core]
     [cljs.nodejs]
     [mount.core :as mount]))
 

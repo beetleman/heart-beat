@@ -1,13 +1,13 @@
-(ns heard-beat.truffle.core
+(ns heart-beat.truffle.core
   (:require [cljs.nodejs :as nodejs]
             [mount.core :refer [defstate]]
-            [heard-beat.helpers.core :refer [throw-err
+            [heart-beat.helpers.core :refer [throw-err
                                              callback-chan
                                              callback-fn
                                              promises->chan]]
             [taoensso.timbre :refer-macros [error]]
-            [heard-beat.config :refer [env]])
-  (:require-macros [heard-beat.truffle.core :refer [defcontract]]))
+            [heart-beat.config :refer [env]])
+  (:require-macros [heart-beat.truffle.core :refer [defcontract]]))
 
 (def Web3 (nodejs/require "web3"));
 (def truffle-contract (nodejs/require "truffle-contract"))

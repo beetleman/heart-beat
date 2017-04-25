@@ -1,14 +1,14 @@
-(ns heard-beat.routes.home
+(ns heart-beat.routes.home
   (:require
    [cljs.core.async :refer [put! chan <!]]
    [hiccups.runtime]
-   [heard-beat.truffle.core :refer [web3 get-accounts get-instance]]
-   [heard-beat.helpers.core :refer [promises->chan]]
-   [heard-beat.contracts :as c]
+   [heart-beat.truffle.core :refer [web3 get-accounts get-instance]]
+   [heart-beat.helpers.core :refer [promises->chan]]
+   [heart-beat.contracts :as c]
    [macchiato.util.response :as r])
   (:require-macros
    [cljs.core.async.macros :refer [go]]
-   [heard-beat.helpers.macros :refer [chan-> <!->]]
+   [heart-beat.helpers.macros :refer [chan-> <!->]]
    [hiccups.core :refer [html]]))
 
 

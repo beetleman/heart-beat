@@ -1,4 +1,4 @@
-## Welcome to heard-beat
+## Welcome to heart-beat
 
 ### Prequisites
 
@@ -44,6 +44,6 @@ The template comes with a `Dockerfile` for running the application using Docker
 Once you've run `lein package`, you can build and run a Docker container as follows:
 
 ```
-docker build -t heard-beat:latest .
-docker run -p 3000:3000 heard-beat:latest
+docker build -t heart-beat:latest .
+docker run -p 3000:3000 heart-beat:latest
 ```

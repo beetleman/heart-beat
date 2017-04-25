@@ -1,8 +1,8 @@
-(ns heard-beat.routes
+(ns heart-beat.routes
   (:require
     [bidi.bidi :as bidi]
-    [heard-beat.routes.home :as home]
-    [heard-beat.routes.not-found :as not-found]))
+    [heart-beat.routes.home :as home]
+    [heart-beat.routes.not-found :as not-found]))
 
 (def routes
   ["/" {:get home/get-view}])

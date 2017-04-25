@@ -3,7 +3,7 @@ source /usr/local/nvm/nvm.sh
 
 lein build < /dev/null &
 
-TARGET=target/out/heard-beat.js
+TARGET=target/out/heart-beat.js
 while `sleep 2`;
 do
     if [ ! -f $TARGET ]; then
