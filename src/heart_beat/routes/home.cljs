@@ -12,6 +12,12 @@
    [hiccups.core :refer [html]]))
 
 
+(defn list-view [items]
+  [:ul
+   (for [i items]
+     [:li i])])
+
+
 (defn get-view [req res raise]
   (go
     (let [accounts (->
@@ -19,19 +25,17 @@
                     get-accounts
                     <!)
           account (first accounts)
-          meta (-> c/coin get-instance <!)
-          balance (<!-> (.deployed c/coin)
-                        #((.. % -getBalance -call) account))
+          counter (<!-> (.deployed c/Counter)
+                        #(.counter %))
           connected? (.isConnected @web3)]
       (-> (html
            [:html
             [:head [:link {:rel "stylesheet" :href "/css/site.css"}]]
             [:body
              [:h2 "Status:"]
-             [:p "accounts: "  (clojure.string/join ", " accounts)]
-             [:p "mets" meta]
-             [:p "balance for '" account "': " balance]
-             [:p "connected: " connected?]]])
+             [:p "accounts: "  (list-view accounts)]
+             [:p "connected: " connected?]
+             [:p "counter: " counter]]])
           (r/ok)
           (r/content-type "text/html")
           (res)))))

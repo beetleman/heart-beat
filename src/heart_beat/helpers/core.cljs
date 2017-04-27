@@ -30,3 +30,6 @@
         (.catch #(put! c {:error (new js/Error %)
                           :result nil})))
     c))
+
+(defn epoch
+  (-> (js/Date.) (.getTime) (/ 1000) int))

@@ -9,11 +9,19 @@ module.exports = async function(deployer, network, accounts) {
     deployer.link(ConvertLib, MetaCoin);
     deployer.deploy(MetaCoin);
 
-    await deployer.deploy(HeartBeat);
-    await deployer.deploy(Counter);
+    let counter;
+    let heatBeat;
 
-    const heatBeat = await HeartBeat.deployed();
-    const counter = await Counter.deployed();
-
-    heatBeat.addSubscriber(counter.address, {from: accounts[0]});
+    deployer.deploy(HeartBeat)
+        .then(() => deployer.deploy(Counter))
+        .then(() => deployer.deploy(HeartBeat))
+        .then(() => HeartBeat.deployed())
+        .then((instance) => {
+            heatBeat = instance;
+            return Counter.deployed();
+        })
+        .then((instance) => {
+            counter = instance;
+            heatBeat.addSubscriber(counter.address, {from: accounts[0]});
+        });
 };
