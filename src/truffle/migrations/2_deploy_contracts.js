@@ -1,7 +1,7 @@
 const HeartBeat = artifacts.require("./HeartBeat.sol");
 const Counter = artifacts.require("./Counter.sol");
 
-module.exports = async function(deployer, network, accounts) {
+module.exports = function(deployer, network, accounts) {
     let counter;
     let heatBeat;
 
